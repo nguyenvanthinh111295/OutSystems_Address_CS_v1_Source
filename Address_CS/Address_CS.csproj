@@ -1,0 +1,474 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD3096B6-9D30-4623-AA05-E93CB56CEF09}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ssAddress_CS</RootNamespace>
+    <AssemblyName>Address_CS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\ThirdParty\WebApi2\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\ThirdParty\WebApi2\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\ThirdParty\WebApi2\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\ThirdParty\WebApi2\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\ThirdParty\WebApi2\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\DatabaseProviders\iDB2DatabaseProvider\iDB2DatabaseProvider.csproj">
+      <Project>{C166B554-BB89-4A79-B23A-6D01560A8A9C}</Project>
+      <Name>OutSystems.HubEdition.iDB2DatabaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\MySQLDatabaseProvider\MySQLDatabaseProvider.csproj">
+      <Project>{B4249E72-A4EE-40C9-BBC3-F7BA2B225B49}</Project>
+      <Name>OutSystems.HubEdition.MySQLDatabaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\OracleDatabaseProvider\OracleDatabaseProvider.csproj">
+      <Project>{3EF55125-0623-4DA7-9DA2-236B6B29D1B9}</Project>
+      <Name>OutSystems.HubEdition.OracleDatabaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseProviders\SQLServerDatabaseProvider\SQLServerDatabaseProvider.csproj">
+      <Project>{F1EF83A7-35CD-4F71-A1A6-C826CEEA7901}</Project>
+      <Name>OutSystems.HubEdition.SQLServerDatabaseProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OutSystems.RuntimeCommon\OutSystems.RuntimeCommon.csproj">
+      <Project>{A99F44D3-9D76-4AA1-A833-BA2D283AD22E}</Project>
+      <Name>OutSystems.RuntimeCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RuntimePlatform\RuntimePlatform.csproj">
+      <Project>{EFB0D1E3-076D-4F16-A595-B33BFC5B3F18}</Project>
+      <Name>RuntimePlatform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSInterface\SMSInterface.csproj">
+      <Project>{66D6B91F-CCF4-495D-89FD-0290CBC9D06E}</Project>
+      <Name>SMSInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebWidgets\WebWidgets.csproj">
+      <Project>{0F14B756-1F80-421A-9837-79B64857331C}</Project>
+      <Name>WebWidgets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WidgetsRuntimeAPI\WidgetsRuntimeAPI.csproj">
+      <Project>{F686984C-5ABE-4529-9AE1-4BBF1EA7F93E}</Project>
+      <Name>WidgetsRuntimeAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugin.Widgets.Runtime\OutSystems.Plugin.Widgets.Runtime.csproj">
+      <Project>{E1542247-C244-4EC3-99F1-F39717106886}</Project>
+      <Name>OutSystems.Plugin.Widgets.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RESTService.Runtime\RESTService.Runtime.csproj">
+      <Project>{86884663-2a9f-4356-a50c-abfcc47a21ae}</Project>
+      <Name>RESTService.Runtime</Name>
+    </ProjectReference>
+    <Reference Include="EXIFExtractor">
+      <Name>EXIFExtractor</Name>
+      <HintPath>..\ThirdParty\EXIFExtractor\EXIFextractor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Name>Newtonsoft.Json</Name>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Json.Net\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet.dll">
+      <Name>GemBox.Spreadsheet.dll</Name>
+      <HintPath>..\ThirdParty\GemboxSpreadSheet\Bin\NET35\GemBox.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <ProjectReference Include="..\DatabaseAbstractionLayer\DatabaseAbstractionLayer.csproj">
+      <Project>{E451FEC9-2B6B-45A2-8AB9-57196F4557E8}</Project>
+      <Name>DatabaseAbstractionLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="referencesProxy\Address_CSReferencesProxy.csproj">
+      <Name>Address_CSReferencesProxy</Name>
+      <Project>{F3BEB653-9E30-4E65-A8BB-3192461CBF8D}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Business_CS.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\Business_CSReferencesProxy.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\Users.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\UsersReferencesProxy.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\RichWidgets.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\RichWidgetsReferencesProxy.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.Plugin.Widgets.Runtime.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssPlatformPasswordUtils.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nosplatformpasswordutils.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.PlatformPasswordUtils.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssAuthentication.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nosauthentication.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.Authentication.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssAsynchronousLogging.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nosasynchronouslogging.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\jackson-core.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\jackson-annotations.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.AsynchronousLogging.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssPlatformRuntime_API.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nosplatformruntime_api.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.PlatformRuntime_API.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssHTTPRequestHandler.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.noshttprequesthandler.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.HTTPRequestHandler.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssSanitization.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\guava.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\owasp-java-html-sanitizer.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\IKVM.OpenJDK.Core.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\owasp-java-html-sanitizer.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nossanitization.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\IKVM.Runtime.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.Sanitization.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\OutSystems.NssText.dll">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="bin\outsystems.nostext.jar">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Extension.Text.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Business_CS.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\ServiceCenter.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\ServiceCenter.referencesHealth.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="precache.manifest">
+      <SubType>Component</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_WebErrorPage.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="SmsErrorPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="iSmsHandler.asmx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="iSmsHandler.asmx.cs">
+      <SubType>Component</SubType>
+      <DependentUpon>iSmsHandler.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="iSmsHandlerClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="iSmsNotificationHandlerClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_download.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_download.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>_download.aspx</DependentUpon>
+    </Compile>
+    <Content Include="_osjs.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="Actions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionAddressType_GetOrCreateByLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionAddress_CreateOrUpdate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionOnSessionStart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionOnBeginWebRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtendedActions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\ENAddressTypeEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JSONENAddressTypeEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\ENAddressEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JSONENAddressEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\ENUserEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JSONENUserEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\ENCountryEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JSONENCountryEntityRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Records.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AnonymousJsonStructureClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RecordLists.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="scripts\Address_CS.model.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_SmsHandler.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_SmsHandler.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>_SmsHandler.aspx</DependentUpon>
+    </Compile>
+    <Content Include="_delivery.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_delivery.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>_delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Images.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_image.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_image.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>_image.aspx</DependentUpon>
+    </Compile>
+    <Content Include="_Basic.css">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_Default.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="Properties\Address_CS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_ping.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_ping.html">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_status.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_preloader.js">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="AbstractProcess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AbstractProcessActivity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_ActivityHandler.asmx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_ActivityHandler.asmx.cs">
+      <SubType>Component</SubType>
+      <DependentUpon>_ActivityHandler.asmx</DependentUpon>
+    </Compile>
+    <Content Include="_TimerHandler.asmx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="_TimerHandler.asmx.cs">
+      <SubType>Component</SubType>
+      <DependentUpon>_TimerHandler.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="_RunningInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_debugger.asmx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="Functions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Address_CSLanguage.resources">
+      <SubType>Component</SubType>
+      <LogicalName>Address_CSLanguage.resources</LogicalName>
+    </EmbeddedResource>
+    <Content Include="precache.manifest">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="Global.asax">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Content Include="Web.config">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="_CallbackInformation.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="DefaultValues.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="_FirstLoadImprovementsScreen.aspx">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="scripts\Address_CS.referencesHealth.js">
+      <SubType>Component</SubType>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55901/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
